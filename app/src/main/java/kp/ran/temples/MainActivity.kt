@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.runBlocking
 import kp.ran.temples.ui.theme.TemplesTheme
 
@@ -21,11 +22,14 @@ class MainActivity : ComponentActivity() {
         val templedao = db.templedao()
         val repository= Repository(templedao)
         val vwmdl = TempleViewModel(repository)
+        val viewModelFactory = TempleViewModelFactory(repository)
+        val vwmdlwithfactory = ViewModelProvider(this, viewModelFactory).get(TempleViewModel::class.java)
 
+/// you directly use vwmdl without using factory also
 
         runBlocking {
 
-            vwmdl.insertStudent(Temple(0,"SriRangam","Trichy","LordVishnu"))
+            vwmdl.insertStudent(Temple(0,"Meenakshi","Madurai","LordAmman"))
             //templedao.addTemple(Temple(0,"Tirupathi","Andra","Perumal"))
         }
 
