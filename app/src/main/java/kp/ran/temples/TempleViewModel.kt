@@ -9,7 +9,6 @@ import kotlinx.coroutines.launch
 
 class TempleViewModel(var repository: Repository) : ViewModel() {
 
-
     var _templeDetails = MutableLiveData<List<Temple>>()
 
     val templeData: LiveData<List<Temple>>
