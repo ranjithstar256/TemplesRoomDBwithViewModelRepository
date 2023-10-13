@@ -2,28 +2,28 @@ package kp.ran.temples
 
 import android.provider.SyncStateContract.Helpers.insert
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
 class TempleViewModel(var repository: Repository):ViewModel() {
+    private var _temples = MutableLiveData<List<Temple>>();
+    val temples: LiveData<List<Temple>> = _temples
 
-    var temples = mutableStateOf<List<Temple>>(listOf<Temple>())
+//    var temples = mutableStateOf<List<Temple>>(listOf<Temple>())
 
     init {
-        getTemple()
+        viewModelScope.launch {
+            _temples.value = repository.getTemples();
+        }
     }
 
     fun insertStudent(temple: Temple) {
         viewModelScope.launch {
             repository.insertTemple((temple))
-            temples.value = repository.getTemples();
-        }
-    }
-
-    fun getTemple() {
-        viewModelScope.launch {
-            temples.value = repository.getTemples();
+            _temples.value = repository.getTemples();
         }
     }
 }
