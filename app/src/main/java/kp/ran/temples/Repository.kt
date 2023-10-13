@@ -5,6 +5,10 @@ class Repository(val stdao:TempleDAO) {
         stdao.insert(temple)
     }
 
+    suspend fun getTemples(): List<Temple> {
+        return stdao.getAllTemple()
+    }
+
     /*suspend fun getAllUsers() = stdao.getAllStudents()
 
     suspend fun updateUser(user: Students) {
