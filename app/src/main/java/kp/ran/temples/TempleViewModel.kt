@@ -1,11 +1,18 @@
 package kp.ran.temples
 
 import android.provider.SyncStateContract.Helpers.insert
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class TempleViewModel(var repository: Repository):ViewModel() {
+@HiltViewModel
+class TempleViewModel @Inject constructor (var repository: Repository):ViewModel() {
+
+    val allTemples: LiveData<List<Temple>> = repository.allTemples
 
     fun insertStudent(temple: Temple) {
         viewModelScope.launch {

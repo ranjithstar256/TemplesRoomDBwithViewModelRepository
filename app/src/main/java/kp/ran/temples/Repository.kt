@@ -1,9 +1,14 @@
 package kp.ran.temples
 
+import androidx.lifecycle.LiveData
+
 class Repository(val stdao:TempleDAO) {
+
     suspend fun insertTemple(temple: Temple) {
         stdao.insert(temple)
     }
+
+    val allTemples: LiveData<List<Temple>> = stdao.getAllLiveTemples()
 
     /*suspend fun getAllUsers() = stdao.getAllStudents()
 
