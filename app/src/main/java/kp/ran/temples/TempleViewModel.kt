@@ -1,8 +1,6 @@
 package kp.ran.temples
 
-import android.provider.SyncStateContract.Helpers.insert
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel

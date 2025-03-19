@@ -1,8 +1,9 @@
 package kp.ran.temples
 
 import androidx.lifecycle.LiveData
+import javax.inject.Inject
 
-class Repository(val stdao:TempleDAO) {
+class Repository @Inject constructor(val stdao:TempleDAO) {
 
     suspend fun insertTemple(temple: Temple) {
         stdao.insert(temple)

@@ -22,6 +22,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -33,6 +34,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         val HiltVM = ViewModelProvider(this).get(TempleViewModel::class.java)
+
+
+        lifecycleScope.launch {
+            HiltVM.repository.insertTemple(Temple(0,"Tirupathi","Andra","Perumal"))
+        }
+
 
         setContent {
             TemplesTheme {
